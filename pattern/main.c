@@ -77,18 +77,15 @@ Algorithem 2: Number position
 			[c] [d]
 
 		init:
-			n = base - 1
 			a = 0
-			b = 0
+			b = 126
 			
 		Loop:
 			a and b is known we can generate c and d
 
-			c1 = b1 + 1
-			c2 = (b2 * n) + 1
-			d1 = c1 * 2
-			d2 = b2 + c2
-
+			c = b + 1
+			d = c * 2
+			
 			a = c
 			b = d
 
@@ -251,14 +248,18 @@ void algo1(int base) {
 }
 
 void collapsedRanges(int base) {
-	int i, j, r_length, count, collsion;
+	int i, j, r_length, count, collision;
 	struct Range *r;
 	bool check, check_collision;
-	mpz_t smallest, biggest;
+	mpz_t smallest, biggest, total;
+	char buffer[1000];
 	
 	//Init
 	count = 0;
-	collsion = 0;
+	collision = 0;
+	mpz_init(smallest);
+	mpz_init(biggest);
+	mpz_init(total);
 	
 	//Generate Range
 	r_length = base - 3;
@@ -274,20 +275,20 @@ void collapsedRanges(int base) {
 		check_collision = true;
 		
 		for(j = 0; j < r_length; j++) {
-			if(mpz_cmp(r[j].b, r[r_length].a) < 0) {
+			if(mpz_cmp(r[j].b, r[j + 1].a) < 0) {
 				algo1_next(&r[j]);
 				check = false;
 				j = r_length;
 			}
 			
-			if(mpz_cmp(r[j].a, r[r_length].b) > 0)
+			if(mpz_cmp(r[j].a, r[j + 1].b) > 0)
 				check_collision = false;
 		}
 		
 		if(check) {
 			if(check_collision) {
-				mpz_init_set(biggest, r[r_length].a);
-				mpz_init_set(smallest, r[r_length].b);
+				mpz_set(biggest, r[r_length].a);
+				mpz_set(smallest, r[r_length].b);
 				
 				for(j = 0; j < r_length; j++) {
 					if(mpz_cmp(biggest, r[j].a) < 0)
@@ -297,10 +298,24 @@ void collapsedRanges(int base) {
 						mpz_set(smallest, r[j].b);
 				}
 				
-				mpz_sub(smallest, smallest, biggest);
-				//printf("smallest digits: %ld\n", mpz_sizeinbase(r[r_length].b, 10));
-				
-				collsion++;
+				mpz_sub(total, smallest, biggest);
+				if(mpz_cmp_ui(total, 0) > 0) {
+					/*
+					mpz_get_str(buffer, 10, biggest);
+					printf("a biggest: %s\n", buffer);
+					
+					mpz_get_str(buffer, 10, smallest);
+					printf("b smallest: %s\n", buffer);
+					
+					mpz_get_str(buffer, 10, total);
+					printf("total: %s\n", buffer);
+					
+					printf("biggest digits: %ld\n", mpz_sizeinbase(biggest, 10));
+					printf("smallest digits: %ld\n", mpz_sizeinbase(smallest, 10));
+					printf("total digits: %ld\n", mpz_sizeinbase(total, 10));
+					*/
+					collision++;
+				}
 			}
 			algo1_next(&r[r_length]);
 		}
@@ -312,7 +327,7 @@ void collapsedRanges(int base) {
 		count++;
 	}
 	
-	printf("collsions: %d\n", collsion);
+	printf("collsions: %d\n", collision);
 }
 
 int main() {
