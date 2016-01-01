@@ -24,7 +24,7 @@
 #endif
 
 static const uint MinBase = 3;
-static const uint MaxBase = 5;
+static const uint MaxBase = 6;
  
 static Bool try_until(mpz_t guess, mp_bitcnt_t nbits_max, mpz_t high, mpz_t r1, mpz_t r2) {
 	uint base = MaxBase;

@@ -32,15 +32,6 @@
 			base 5:          10111000
 		
 		Base 2-6: ?? this is the question...
-	
-	Info:
-		3 and 6	= 36
-			base 3: 
-			base 6: 
-		4 and 6	= 1296
-		5 and 6	= 5
-
-		3 and 5 = 30
 */
 
 bool check(mpz_t value, int base) {
@@ -48,7 +39,7 @@ bool check(mpz_t value, int base) {
 	long long length;
 	char buffer[1000000];
 	
-	for(i = 6; i < base; i++) {
+	for(i = 3; i < base; i++) {
 		length = mpz_sizeinbase(value, i);
 		mpz_get_str(buffer, i, value);
 		
@@ -63,9 +54,7 @@ bool check(mpz_t value, int base) {
 bool check_char(char* str, int base) {
 	mpz_t value;
 	
-	mpz_init(value);
-	
-	mpz_set_str(value, str, 10);
+	mpz_init_set_str(value, str, 10);
 	
 	return check(value, base);
 }
@@ -92,8 +81,8 @@ void getSmallestBase(int base, int loop) {
 	char buffer[1000000];
 	mpz_t value, index;
 	
-	nr = 1;
-	mpz_init_set_ui(index, 1);
+	nr = 0;
+	mpz_init_set_ui(index, 0);
 	mpz_init_set_ui(value, 0);
 	
 	for(j = 0; j < loop; j++) {
@@ -106,11 +95,7 @@ void getSmallestBase(int base, int loop) {
 }
 
 int main() {
-	//getSmallestBase(2, 50);
-	//getSmallestBase(3, 1784);
-	//getSmallestBase(3, 19);
-	getSmallestBase(4, 2000);
-	//getSmallestBase(5, 3);
+	getSmallestBase(3, 2000);
 	
 	//printf("%s\n", check_char("82000", 5) ? "true" : "false");
 	
