@@ -13,10 +13,10 @@
 Algorithem 1: Number Generation
 	Data:
 		f(3, 1):	2
-		f(3, 2):	19
-		f(3, 19):	94
-		f(3, 94):	469
-		f(3, 469):	683
+		f(3, 2):	5
+		f(3, 5):	14
+		f(3, 14):	41
+		f(3, 41):	122
 		
 		f(4, 1):	3
 		f(4, 3):	11
@@ -28,7 +28,7 @@ Algorithem 1: Number Generation
 		f(5, 4):	19
 		f(5, 19):	94
 		f(5, 94):	469
-		f(5, 469):	683
+		f(5, 469):	2344
 			
 	Explain:
 		f(base, start):
