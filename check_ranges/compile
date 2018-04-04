@@ -1,1 +1,3 @@
-g++ main.cpp -o main -O2 -std=c++11 -lgmp
+g++ -c Base_Range.cpp -o Base_Range.o -O2 -std=c++11
+g++ -c Base_Algorithem.cpp -o Base_Algorithem.o -O2 -std=c++11
+g++ Base_Range.o Base_Algorithem.o main.cpp -o main -O2 -std=c++11 -lgmp

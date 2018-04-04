@@ -116,7 +116,7 @@ void f_base(int b) {
 	//Init
 	mpz_init(x);
 	
-	for(i = 3; i < 10000; i++) {
+	for(i = 3; i < 100; i++) {
 		mpz_set_ui(x, i);
 		
 		if(check_base(x, b)) {
@@ -146,8 +146,8 @@ void f_range_base(int b) {
 int main() {
 	int i;
 	
-	for(i = 3; i <= 6; i++) {
-		f_base(3);
+	for(i = 4; i <= 4; i++) {
+		f_base(i);
 		cout << "--------------" << endl;
 	}
 }

@@ -8,66 +8,74 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "gmp.h"
+#include "Base_Algorithem.h"
 
 using namespace std;
 
-struct Base_Range {
-	int b;			// Base
-	mpz_t x;		// Start
-	mpz_t y;		// End
-};
-
-void init(Base_Range &br, int b) {
-	br.b = b;
-	mpz_init_set_ui(br.x, b);
-	mpz_init_set_ui(br.y, b + 1);
-}
-
-void init(Base_Range &br, int b, mpz_t x, mpz_t y) {
-	br.b = b;
-	mpz_init_set(br.x, x);
-	mpz_init_set(br.y, y);
-}
-
-void next(Base_Range &br) {
-	//x = x * b
-	mpz_mul_ui(br.x, br.x, br.b);
-	
-	//y = x + y
-	mpz_add(br.y, br.x, br.y);
-}
-
-void draw(Base_Range &br) {
-	cout << br.b << " "
-		<< mpz_get_str(nullptr, 10, br.x) << " "
-		<< mpz_get_str(nullptr, 10, br.y) << endl;
-}
-
-void draw_size(Base_Range &br) {
-	cout << mpz_sizeinbase(br.x, br.b) << " "
-		<< mpz_sizeinbase(br.y, br.b) << endl;
-}
-
-void clean(Base_Range &br) {
-	mpz_clear(br.x);
-	mpz_clear(br.y);
-}
-
 void f() {
 	int i;
-	Base_Range br;
+	long long x;
+	Base_Range br_3, br_4, br_5;
 	
-	//Init
-	init(br, 3);
+	br_3.setBase(3);
+	br_4.setBase(4);
+	br_5.setBase(5);
 	
-	for(i = 0; i < 1000; i++) {
-		// Draw
-		draw_size(br);
-		next(br);
+	while(!br_3.isDone()) {
+		if(x % 10000 == 0)
+			br_3.drawSize();
+		
+		br_3.next();
+		br_4.next();
+		br_5.next();
+		
+		x++;
+	}
+}
+
+void f2() {
+	int i;
+	Base_Range br, br2;
+	
+	br.setBase(3);
+	br.next();
+	br.next();
+	br.next();
+	
+	br2 = br;
+	
+	while(!br2.isDone()) {
+		br2.draw();
+		br2.next();
+	}
+}
+
+void f3() {
+	Base_Algorithem ba;
+	
+	ba.scan();
+}
+
+void f4() {
+	int i;
+	Base_Algorithem ba;
+	
+	i = 0;
+	
+	while(true) {
+		ba.updateSmallest();
+		
+		if(ba.hasCollision()) {
+			i++;
+			
+			ba.drawSize();
+			cout << i << endl;
+		}
 	}
 }
 
 int main() {
-	f();
+	f3();
+	
+	return 0;
 }
