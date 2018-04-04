@@ -40,12 +40,40 @@ bool Base_Algorithem::hasCollision() {
 	return true;
 }
 
+bool Base_Algorithem::hasAnswer() {
+	int i;
+	bool c;
+	Base_Range* br;
+	
+	// Test 1
+	c = true;
+	mpz_set(this->t, this->bases[0]->new_start);
+	
+	for(i = 1; i < this->total; i++)
+		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
+			c = false;
+	
+	if(c)
+		return true;
+	
+	// Test 1
+	c = true;
+	mpz_set(this->t, this->bases[0]->new_end);
+	
+	for(i = 1; i < this->total; i++)
+		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
+			c = false;
+	
+	return c;
+}
+
 /*
 	returns the base id
 	Stores start result in "t" variable
 */
 int Base_Algorithem::getSmallestStart() {
 	int i, id;
+	string new_start;
 	
 	//Init
 	id = 0;
@@ -91,25 +119,74 @@ void Base_Algorithem::updateSmallest() {
 }
 
 void Base_Algorithem::scan() {
-	int i, id;
+	int i, j, id;
+	long long s, l;
 	Base_Algorithem ba;
+	
+	l = 1000;
+	
+	while(true) {
+		this->updateSmallest();
+		
+		// Find collision
+		while(!this->hasCollision())
+			this->updateSmallest();
+		
+		// Get smallest start
+		id = this->getSmallestStart();
+		
+		// Patch new generation
+		for(i = 0; i < this->total; i++)
+			if(i == id)
+				*(ba.bases[i]) << *(this->bases[i]);
+			else
+				*(ba.bases[i]) = *(this->bases[i]);
+		
+		
+		s = mpz_sizeinbase(ba.bases[0]->new_start, 10);
+		if(s > l) {
+			cout << s << endl;
+			l += 1000;
+		}
+		
+		if(s > 30000)
+			ba.scan2(id, 0);
+	}
+}
+
+void Base_Algorithem::scan2(int id, int level) {
+	int i, new_id;
+	Base_Range* br;
+	Base_Algorithem ba;
+	
+	//Debug
+	//this->draw();
+	
+	br = this->bases[id];
 	
 	// Find collision
 	while(!this->hasCollision()) {
-		this->updateSmallest();
+		if(br->isDone())
+			return;
+		
+		br->next();
 	}
 	
 	// Get smallest start
-	id = this->getSmallestStart();
+	new_id = this->getSmallestStart();
 	
 	// Patch new generation
 	for(i = 0; i < this->total; i++)
-		if(i == id)
+		if(i == new_id)
 			*(ba.bases[i]) << *(this->bases[i]);
 		else
 			*(ba.bases[i]) = *(this->bases[i]);
 	
-	ba.scan2(id);
+	if(!hasAnswer())
+		ba.scan2(new_id, level + 1);
+	else
+		//Debug
+		this->draw();
 }
 
 void Base_Algorithem::draw() {

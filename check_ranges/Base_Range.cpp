@@ -31,7 +31,8 @@ Base_Range::~Base_Range() {
 	Copy over the variables to the other object
 */
 Base_Range& Base_Range::operator=(const Base_Range &parent) {
-	cout << "operator=(const Base_Range &parent)" << endl;
+	// Debug
+	//cout << "operator=(const Base_Range &parent)" << endl;
 	
 	this->base = parent.base;
 	
@@ -51,7 +52,8 @@ Base_Range& Base_Range::operator=(const Base_Range &parent) {
 	Patch over the variables to the other object for the next generation
 */
 Base_Range& Base_Range::operator<<(const Base_Range &parent) {
-	cout << "operator<<(const Base_Range &parent)" << endl;
+	// Debug
+	//cout << "operator<<(const Base_Range &parent)" << endl;
 	
 	this->base = parent.base;
 	
@@ -97,7 +99,7 @@ void Base_Range::next() {
 
 // Draw
 void Base_Range::draw() {
-	string start, end, x, y;
+	string start, end, x, y, new_start, new_end;
 	
 	// Get start and y
 	start = mpz_get_str(nullptr, 10, this->start);
@@ -107,19 +109,31 @@ void Base_Range::draw() {
 	x = mpz_get_str(nullptr, 10, this->x);
 	y = mpz_get_str(nullptr, 10, this->y);
 	
+	// Get new start and end
+	new_start = mpz_get_str(nullptr, 10, this->new_start);
+	new_end = mpz_get_str(nullptr, 10, this->new_end);
+	
 	// Draw
 	cout << "Base_Range[" << this->base << "] = "
 		<< "{ " << start << ", " << end << " }"
-		<< "{ " << x << ", " << y << " }" << endl;
+		<< "{ " << x << ", " << y << " }"
+		<< "{ " << new_start << ", " << new_end << " }"
+		<< endl;
 }
 
 void Base_Range::drawSize() {
-	long long x, y;
+	long long start, end, x, y;
+	
+	// Get start and y
+	start = mpz_sizeinbase(this->start, 10);
+	end = mpz_sizeinbase(this->end, 10);
 	
 	// Get x and y
 	x = mpz_sizeinbase(this->x, 10);
 	y = mpz_sizeinbase(this->y, 10);
 	
 	// Draw
-	cout << x << " " << y << endl;
+	cout << "Base_Range[" << this->base << "] = "
+		<< "{ " << start << ", " << end << " }"
+		<< "{ " << x << ", " << y << " }" << endl;
 }

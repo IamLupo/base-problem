@@ -18,6 +18,7 @@ class Base_Algorithem {
 		~Base_Algorithem();
 		
 		bool hasCollision();
+		bool hasAnswer();
 		
 		int getSmallestStart();
 		int getBiggestStart();
@@ -25,6 +26,7 @@ class Base_Algorithem {
 		void updateSmallest();
 		
 		void scan();
+		void scan2(int id, int level);
 		
 		// Draw
 		void draw();
