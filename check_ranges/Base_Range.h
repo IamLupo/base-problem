@@ -6,8 +6,6 @@
 
 class Base_Range {
 	private:
-		int base;			// Base
-		
 		mpz_t start;		// Start
 		mpz_t end;			// End
 		
@@ -15,6 +13,8 @@ class Base_Range {
 		mpz_t y;			// y
 		
 	public:
+		int base;			// Base
+		
 		mpz_t new_start;	// new Start
 		mpz_t new_end;		// new End
 	
@@ -25,6 +25,7 @@ class Base_Range {
 		Base_Range& operator<<(const Base_Range& br);
 		
 		void setBase(int base);
+		void updateXY(long long n);
 		bool isDone();
 		void next();
 		

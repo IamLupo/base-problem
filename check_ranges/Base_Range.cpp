@@ -73,6 +73,25 @@ void Base_Range::setBase(int base) {
 	this->base = base;
 }
 
+void Base_Range::updateXY(long long n) {
+	if(n <= 0) {
+		mpz_set_ui(this->x, 0);
+		mpz_set_ui(this->y, 1);
+	} else {
+		// x = base^n
+		mpz_ui_pow_ui(this->x, this->base, n);
+		
+		// y = (base^(n + 1) - 1) / (base - 1)
+		mpz_mul_ui(this->y, this->x, this->base);
+		mpz_sub_ui(this->y, this->y, 1);
+		mpz_div_ui(this->y, this->y, this->base - 1);
+	}
+	
+	// update new start and end
+	mpz_add(this->new_start, this->start, this->x);
+	mpz_add(this->new_end, this->start, this->y);
+}
+
 bool Base_Range::isDone() {
 	// No end detected
 	if(mpz_cmp_ui(this->end, 0) == 0)

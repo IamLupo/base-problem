@@ -25,10 +25,8 @@ class Base_Algorithem {
 		int getSmallestEnd();
 		int getBiggestEnd();
 		
-		void updateSmallest();
-		
 		void scan();
-		void scan2(int id, int level);
+		void scan2();
 		
 		// Draw
 		void draw();
