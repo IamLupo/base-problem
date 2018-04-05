@@ -51,7 +51,7 @@ using namespace std;
 
 
 		Conclusion:
-			x2 = 5*x1
+			x2 = 4*x1
 			y1 = (x2 - 1) / 3
 			y2 = y1 + x2
 	
@@ -70,8 +70,8 @@ using namespace std;
 			9765625	12207031	48828125	61035156
 
 		Conclusion:
-			y1 = (x2 - 1) / 4
 			x2 = 5*x1
+			y1 = (x2 - 1) / 4
 			y2 = y1 + x2
 			
 	f(6):
@@ -88,8 +88,8 @@ using namespace std;
 
 
 		Conclusion:
-			y1 = (x2 - 1) / 5
 			x2 = 6*x1
+			y1 = (x2 - 1) / 5
 			y2 = y1 + x2
 */
 
