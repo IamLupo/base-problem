@@ -45,33 +45,32 @@ bool Base_Algorithem::hasCollision() {
 	return true;
 }
 
-bool Base_Algorithem::hasAnswer() {
+bool Base_Algorithem::hasAnswerInStart() {
 	int i;
-	bool c;
 	Base_Range* br;
 	
+	//Init
 	br = this->bases[0];
 	
-	// Test 1
-	c = true;
-	mpz_set(this->t, br->new_start);
+	for(i = 1; i < this->total; i++)
+		if(mpz_cmp(br->new_start, this->bases[i]->new_start) != 0 and mpz_cmp(br->new_start, this->bases[i]->new_end) != 0)
+			return false;
+	
+	return true;
+}
+
+bool Base_Algorithem::hasAnswerInEnd() {
+	int i;
+	Base_Range* br;
+	
+	//Init
+	br = this->bases[0];
 	
 	for(i = 1; i < this->total; i++)
-		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
-			c = false;
+		if(mpz_cmp(br->new_end, this->bases[i]->new_start) != 0 and mpz_cmp(br->new_end, this->bases[i]->new_end) != 0)
+			return false;
 	
-	if(c)
-		return true;
-	
-	// Test 2
-	c = true;
-	mpz_set(this->t, br->new_end);
-	
-	for(i = 1; i < this->total; i++)
-		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
-			c = false;
-	
-	return c;
+	return true;
 }
 
 /*
@@ -184,7 +183,7 @@ void Base_Algorithem::scan() {
 			l += 10000;
 		}
 		
-		//if(s >= 150001)
+		//if(s >= 1670004)
 			this->scan2();
 	}
 }
@@ -219,7 +218,7 @@ void Base_Algorithem::scan2() {
 		ba.bases[id]->updateXY(i);
 		
 		if(ba.hasCollision()) {
-			if(ba.hasAnswer()) {
+			if(ba.hasAnswerInStart() || ba.hasAnswerInEnd()) {
 				ba.draw();
 				cout << "---------------------------------------" << endl;
 			} else {

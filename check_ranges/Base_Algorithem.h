@@ -18,7 +18,8 @@ class Base_Algorithem {
 		~Base_Algorithem();
 		
 		bool hasCollision();
-		bool hasAnswer();
+		bool hasAnswerInStart();
+		bool hasAnswerInEnd();
 		
 		int getSmallestStart();
 		int getBiggestStart();
