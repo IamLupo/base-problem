@@ -5,7 +5,7 @@ Base_Algorithem::Base_Algorithem() {
 	Base_Range* br;
 	
 	//Init
-	this->total = 3;
+	this->total = 4;
 	mpz_init(this->t);
 	
 	for(i = 0; i < this->total; i++) {
@@ -184,7 +184,8 @@ void Base_Algorithem::scan() {
 			l += 10000;
 		}
 		
-		this->scan2();
+		//if(s >= 150001)
+			this->scan2();
 	}
 }
 
@@ -206,8 +207,6 @@ void Base_Algorithem::scan2() {
 	this->getSmallestEnd();
 	mpz_sub(this->t, this->t, br->new_start);
 	end = mpz_sizeinbase(this->t, br->base) - 1;
-	
-	//cout << start << " " << end << endl;
 	
 	// Patch new generation
 	for(i = 0; i < this->total; i++)
