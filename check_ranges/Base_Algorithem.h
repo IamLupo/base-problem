@@ -22,6 +22,8 @@ class Base_Algorithem {
 		
 		int getSmallestStart();
 		int getBiggestStart();
+		int getSmallestEnd();
+		int getBiggestEnd();
 		
 		void updateSmallest();
 		

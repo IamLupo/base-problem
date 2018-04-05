@@ -8,7 +8,7 @@ Base_Algorithem::Base_Algorithem() {
 	this->total = 4;
 	mpz_init(this->t);
 	
-	for(i = 0; i <= this->total; i++) {
+	for(i = 0; i < this->total; i++) {
 		// Create base
 		br = new Base_Range();
 		
@@ -19,11 +19,16 @@ Base_Algorithem::Base_Algorithem() {
 		br->next();
 		
 		// Save base
-		bases.push_back(br);
+		this->bases.push_back(br);
 	}
 }
 
 Base_Algorithem::~Base_Algorithem() {
+	int i;
+	
+	for(i = 0; i < this->total; i++)
+		delete this->bases[i];
+	
 	mpz_clear(this->t);
 }
 
@@ -110,6 +115,49 @@ int Base_Algorithem::getBiggestStart() {
 	return id;
 }
 
+/*
+	returns the base id
+	Stores start result in "t" variable
+*/
+int Base_Algorithem::getSmallestEnd() {
+	int i, id;
+	
+	//Init
+	id = 0;
+	mpz_set(this->t, this->bases[0]->new_end);
+	
+	// Get biggest start
+	for(i = 1; i < this->total; i++)
+		if(mpz_cmp(this->t, this->bases[i]->new_end) > 0) {
+			id = i;
+			mpz_set(this->t, this->bases[i]->new_end);
+		}
+	
+	return id;
+}
+
+/*
+	returns the base id
+	Stores start result in "t" variable
+*/
+int Base_Algorithem::getBiggestEnd() {
+	int i, id;
+	
+	//Init
+	id = 0;
+	mpz_set(this->t, this->bases[0]->new_end);
+	
+	// Get biggest start
+	for(i = 1; i < this->total; i++)
+		if(mpz_cmp(this->t, this->bases[i]->new_end) < 0) {
+			id = i;
+			mpz_set(this->t, this->bases[i]->new_end);
+		}
+	
+	return id;
+}
+
+
 void Base_Algorithem::updateSmallest() {
 	int base_id;
 	
@@ -149,7 +197,7 @@ void Base_Algorithem::scan() {
 			l += 1000;
 		}
 		
-		if(s > 30000)
+		//if(s >= 150001)
 			ba.scan2(id, 0);
 	}
 }
@@ -182,11 +230,12 @@ void Base_Algorithem::scan2(int id, int level) {
 		else
 			*(ba.bases[i]) = *(this->bases[i]);
 	
-	if(!hasAnswer())
-		ba.scan2(new_id, level + 1);
-	else
-		//Debug
+	if(hasAnswer()) {
 		this->draw();
+		cout << "---------------------------------------" << endl;
+	} else {
+		ba.scan2(new_id, level + 1);
+	}
 }
 
 void Base_Algorithem::draw() {
