@@ -27,7 +27,8 @@ class Base_Algorithem {
 		int getBiggestEnd();
 		
 		void scan();
-		void scan2();
+		void scan2(mpz_t start, mpz_t end, int id);
+		void scan3();
 		
 		// Draw
 		void draw();

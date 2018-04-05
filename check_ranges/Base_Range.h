@@ -27,6 +27,7 @@ class Base_Range {
 		void setBase(int base);
 		void updateXY(long long n);
 		bool isDone();
+		bool isInRange(mpz_t pos);
 		void next();
 		
 		//Draw

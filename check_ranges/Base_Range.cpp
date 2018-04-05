@@ -100,6 +100,13 @@ bool Base_Range::isDone() {
 	return (mpz_cmp(this->new_end, this->end) == 1);
 }
 
+bool Base_Range::isInRange(mpz_t pos) {
+	if(mpz_cmp(this->new_start, pos) < 0 && mpz_cmp(this->new_end, pos) > 0)
+		return true;
+	
+	return false;
+}
+
 void Base_Range::next() {
 	// Fix
 	if(mpz_cmp_ui(this->x, 0) == 0)
