@@ -157,11 +157,13 @@ int Base_Algorithem::getBiggestEnd() {
 	return id;
 }
 
-void Base_Algorithem::scan() {
-	/*
+void Base_Algorithem::scanA() {
 	int id, s, l;
+	time_t start_time;
 	
+	s = 0;
 	l = 10000;
+	start_time = time(0);
 	
 	while(true) {
 		// Update smallest
@@ -180,16 +182,18 @@ void Base_Algorithem::scan() {
 		
 		s = mpz_sizeinbase(this->t, 10);
 		if(s > l) {
-			cout << s << endl;
+			cout << time(0) - start_time << " " << s << endl;
 			l += 10000;
 		}
 		
 		if(s >= 1730012)
 			this->scan3();
 	}
-	*/
-	
+}
+
+void Base_Algorithem::scanB() {
 	int id, s, l;
+	time_t start_time;
 	mpz_t start, end;
 	Base_Range* br;
 	
@@ -199,7 +203,9 @@ void Base_Algorithem::scan() {
 	mpz_init(start);		// Biggest start
 	mpz_init(end);			// Smallest end
 	
+	s = 0;
 	l = 10000;
+	start_time = time(0);
 	
 	while(true) {
 		br->next();
@@ -207,14 +213,15 @@ void Base_Algorithem::scan() {
 		mpz_set(start, br->new_start);
 		mpz_set(end, br->new_end);
 		
-		this->scan2(start, end, id - 1);
-		
 		// Debug
 		s = mpz_sizeinbase(start, 10);
 		if(s > l) {
-			cout << s << endl;
+			cout << time(0) - start_time << " " << s << endl;
 			l += 10000;
 		}
+		
+		//if(s >= 1730012)
+			this->scan2(start, end, id - 1);
 	}
 	
 	mpz_clear(start);

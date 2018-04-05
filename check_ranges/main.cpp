@@ -15,7 +15,7 @@ using namespace std;
 int main() {
 	Base_Algorithem ba;
 	
-	ba.scan();
+	ba.scanA();
 	
 	return 0;
 }

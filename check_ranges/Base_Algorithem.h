@@ -2,6 +2,7 @@
 #define H_BASE_ALGORITHEM
 
 #include <vector>
+#include <ctime>
 #include "Base_Range.h"
 
 using namespace std;
@@ -26,7 +27,8 @@ class Base_Algorithem {
 		int getSmallestEnd();
 		int getBiggestEnd();
 		
-		void scan();
+		void scanA();
+		void scanB();
 		void scan2(mpz_t start, mpz_t end, int id);
 		void scan3();
 		
