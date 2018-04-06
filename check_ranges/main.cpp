@@ -15,6 +15,8 @@ using namespace std;
 int main() {
 	Base_Algorithem ba;
 	
+	ba.setN(3480007);
+	
 	ba.scanA();
 	
 	return 0;

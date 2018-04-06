@@ -5,7 +5,7 @@ Base_Algorithem::Base_Algorithem() {
 	Base_Range* br;
 	
 	//Init
-	this->total = 4;
+	this->total = 3;
 	mpz_init(this->t);
 	
 	for(i = 0; i < this->total; i++) {
@@ -13,7 +13,7 @@ Base_Algorithem::Base_Algorithem() {
 		br = new Base_Range();
 		
 		// Set base
-		br->setBase(i + 3);
+		br->setBase(i + 4);
 		
 		// Next
 		br->next();
@@ -47,13 +47,12 @@ bool Base_Algorithem::hasCollision() {
 
 bool Base_Algorithem::hasAnswerInStart() {
 	int i;
-	Base_Range* br;
 	
 	//Init
-	br = this->bases[0];
+	mpz_set(this->t, this->bases[0]->new_start);
 	
 	for(i = 1; i < this->total; i++)
-		if(mpz_cmp(br->new_start, this->bases[i]->new_start) != 0 and mpz_cmp(br->new_start, this->bases[i]->new_end) != 0)
+		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
 			return false;
 	
 	return true;
@@ -61,13 +60,12 @@ bool Base_Algorithem::hasAnswerInStart() {
 
 bool Base_Algorithem::hasAnswerInEnd() {
 	int i;
-	Base_Range* br;
 	
 	//Init
-	br = this->bases[0];
+	mpz_set(this->t, this->bases[0]->new_end);
 	
 	for(i = 1; i < this->total; i++)
-		if(mpz_cmp(br->new_end, this->bases[i]->new_start) != 0 and mpz_cmp(br->new_end, this->bases[i]->new_end) != 0)
+		if(mpz_cmp(this->t, this->bases[i]->new_start) != 0 and mpz_cmp(this->t, this->bases[i]->new_end) != 0)
 			return false;
 	
 	return true;
@@ -157,6 +155,19 @@ int Base_Algorithem::getBiggestEnd() {
 	return id;
 }
 
+void Base_Algorithem::setN(int n) {
+	int i;
+	long long base_n;
+	
+	mpz_ui_pow_ui(this->t, 10, n);
+	
+	for(i = 0; i < this->total; i++) {
+		base_n = mpz_sizeinbase(this->t, this->bases[i]->base);
+		
+		this->bases[i]->updateXY(base_n);
+	}
+}
+
 void Base_Algorithem::scanA() {
 	int id, s, l;
 	time_t start_time;
@@ -177,17 +188,13 @@ void Base_Algorithem::scanA() {
 			this->bases[id]->next();
 		}
 		
-		// Debug
-		//this->draw();
-		
 		s = mpz_sizeinbase(this->t, 10);
 		if(s > l) {
 			cout << time(0) - start_time << " " << s << endl;
-			l += 10000;
+			l = s + 10000;
 		}
 		
-		if(s >= 1730012)
-			this->scan3();
+		this->scan3();
 	}
 }
 
@@ -220,8 +227,7 @@ void Base_Algorithem::scanB() {
 			l += 10000;
 		}
 		
-		//if(s >= 1730012)
-			this->scan2(start, end, id - 1);
+		this->scan2(start, end, id - 1);
 	}
 	
 	mpz_clear(start);
@@ -299,6 +305,7 @@ void Base_Algorithem::scan3() {
 		if(ba.hasCollision()) {
 			if(ba.hasAnswerInStart() || ba.hasAnswerInEnd()) {
 				ba.draw();
+				//ba.drawBase();
 			} else {
 				ba.scan3();
 			}
@@ -320,4 +327,17 @@ void Base_Algorithem::drawSize() {
 	
 	for(i = 0; i < this->total; i++)
 		this->bases[i]->drawSize();
+}
+
+void Base_Algorithem::drawBase() {
+	int i;
+	
+	cout << mpz_get_str(nullptr, 10, this->t);
+				
+	for(i = 0; i < this->total; i++)
+		cout << "	" << mpz_get_str(nullptr, this->bases[i]->base, this->t);
+	
+	cout << "	" << mpz_get_str(nullptr, 11, this->t);
+	
+	cout << endl;
 }
