@@ -38,6 +38,7 @@ class Base_Algorithem {
 		void draw();
 		void drawSize();
 		void drawBase();
+		void drawTime(time_t t);
 };
 
 #endif

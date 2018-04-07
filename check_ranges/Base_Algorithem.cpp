@@ -186,7 +186,8 @@ void Base_Algorithem::scanA() {
 		
 		s = mpz_sizeinbase(this->t, 10);
 		if(s > l) {
-			cout << time(0) - start_time << "s " << s << endl;
+			this->drawTime(time(0) - start_time);
+			cout << " - " << s << endl;
 			l = s + 10000;
 		}
 
@@ -336,4 +337,18 @@ void Base_Algorithem::drawBase() {
 	cout << "	" << mpz_get_str(nullptr, 11, this->t);
 	
 	cout << endl;
+}
+
+void Base_Algorithem::drawTime(time_t t) {
+	int d, h, m, s;
+	
+	s = t % 60;
+	t /= 60;
+	m = t % 60;
+	t /= 60;
+	h = t % 24;
+	t /= 24;
+	d = t;
+	
+	cout << d << " days, " << h << " hours, " << m << " min, " << s << " sec"; 
 }
