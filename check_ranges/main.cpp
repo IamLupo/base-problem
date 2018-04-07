@@ -12,13 +12,21 @@
 
 using namespace std;
 
-int main() {
-	Base_Algorithem ba;
-	
-	ba.setN(5090833);
-	//ba.setN(11000000);
-	
-	ba.scanA();
+int main(int argc, char* argv[]) {
+	try {
+		Base_Algorithem ba;
+		
+		if(argc == 2) {
+			string nr = argv[1];
+			
+			ba.setN(stoi(nr.c_str(), nullptr, 0));
+		}
+		
+		ba.scanA();
+	}
+	catch(exception &e) {
+		cout << e.what() << endl;
+	}
 	
 	return 0;
 }
