@@ -82,7 +82,6 @@ int Base_Algorithem::getSmallestStart() {
 	id = 0;
 	mpz_set(this->t, this->bases[0]->new_start);
 	
-	// Get biggest start
 	for(i = 1; i < this->total; i++)
 		if(mpz_cmp(this->t, this->bases[i]->new_start) > 0) {
 			id = i;
@@ -103,7 +102,6 @@ int Base_Algorithem::getBiggestStart() {
 	id = 0;
 	mpz_set(this->t, this->bases[0]->new_start);
 	
-	// Get biggest start
 	for(i = 1; i < this->total; i++)
 		if(mpz_cmp(this->t, this->bases[i]->new_start) < 0) {
 			id = i;
@@ -115,7 +113,7 @@ int Base_Algorithem::getBiggestStart() {
 
 /*
 	returns the base id
-	Stores start result in "t" variable
+	Stores end result in "t" variable
 */
 int Base_Algorithem::getSmallestEnd() {
 	int i, id;
@@ -124,7 +122,6 @@ int Base_Algorithem::getSmallestEnd() {
 	id = 0;
 	mpz_set(this->t, this->bases[0]->new_end);
 	
-	// Get biggest start
 	for(i = 1; i < this->total; i++)
 		if(mpz_cmp(this->t, this->bases[i]->new_end) > 0) {
 			id = i;
@@ -136,7 +133,7 @@ int Base_Algorithem::getSmallestEnd() {
 
 /*
 	returns the base id
-	Stores start result in "t" variable
+	Stores end result in "t" variable
 */
 int Base_Algorithem::getBiggestEnd() {
 	int i, id;
@@ -145,7 +142,6 @@ int Base_Algorithem::getBiggestEnd() {
 	id = 0;
 	mpz_set(this->t, this->bases[0]->new_end);
 	
-	// Get biggest start
 	for(i = 1; i < this->total; i++)
 		if(mpz_cmp(this->t, this->bases[i]->new_end) < 0) {
 			id = i;
@@ -190,10 +186,10 @@ void Base_Algorithem::scanA() {
 		
 		s = mpz_sizeinbase(this->t, 10);
 		if(s > l) {
-			cout << time(0) - start_time << " " << s << endl;
+			cout << time(0) - start_time << "s " << s << endl;
 			l = s + 10000;
 		}
-		
+
 		this->scan3();
 	}
 }
@@ -277,7 +273,7 @@ void Base_Algorithem::scan3() {
 	int i, id, start, end;
 	Base_Range* br;
 	Base_Algorithem ba;
-	
+
 	// Init
 	id = this->getSmallestStart();
 	br = this->bases[id];
@@ -301,11 +297,11 @@ void Base_Algorithem::scan3() {
 	
 	for(i = start <= 0 ? 0 : start; i <= end; i++) {
 		ba.bases[id]->updateXY(i);
-		
+	
 		if(ba.hasCollision()) {
 			if(ba.hasAnswerInStart() || ba.hasAnswerInEnd()) {
-				ba.draw();
-				//ba.drawBase();
+				//ba.draw();
+				ba.drawSize();
 			} else {
 				ba.scan3();
 			}

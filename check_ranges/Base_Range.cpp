@@ -7,7 +7,6 @@ Base_Range::Base_Range() {
 	
 	mpz_init_set_ui(this->start, 0);
 	mpz_init_set_ui(this->end, 0);
-	//mpz_ui_pow_ui(this->end, 10, 1000);
 	
 	mpz_init_set_ui(this->x, 0);
 	mpz_init_set_ui(this->y, 1);
@@ -31,9 +30,6 @@ Base_Range::~Base_Range() {
 	Copy over the variables to the other object
 */
 Base_Range& Base_Range::operator=(const Base_Range &parent) {
-	// Debug
-	//cout << "operator=(const Base_Range &parent)" << endl;
-	
 	this->base = parent.base;
 	
 	mpz_set(this->start, parent.start);
@@ -52,9 +48,6 @@ Base_Range& Base_Range::operator=(const Base_Range &parent) {
 	Patch over the variables to the other object for the next generation
 */
 Base_Range& Base_Range::operator<<(const Base_Range &parent) {
-	// Debug
-	//cout << "operator<<(const Base_Range &parent)" << endl;
-	
 	this->base = parent.base;
 	
 	mpz_set(this->start, parent.new_start);
