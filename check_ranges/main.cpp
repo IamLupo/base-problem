@@ -20,6 +20,8 @@ int main(int argc, char* argv[]) {
 			string nr = argv[1];
 			
 			ba.setN(stoi(nr.c_str(), nullptr, 0));
+		} else {
+			ba.setN(27436667);
 		}
 		
 		ba.scanA();

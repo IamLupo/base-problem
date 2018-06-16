@@ -1,5 +1,7 @@
 #include "Base_Algorithem.h"
 
+static int highest_level = 0;
+
 Base_Algorithem::Base_Algorithem() {
 	int i;
 	Base_Range* br;
@@ -191,7 +193,7 @@ void Base_Algorithem::scanA() {
 			l = s + 10000;
 		}
 
-		this->scan3();
+		this->scan3(0);
 	}
 }
 
@@ -262,7 +264,7 @@ void Base_Algorithem::scan2(mpz_t start, mpz_t end, int id) {
 			if(id - 1 >= 0)
 				this->scan2(new_start, new_end, id - 1);
 			else
-				this->scan3();
+				this->scan3(0);
 		}
 	}
 	
@@ -270,11 +272,17 @@ void Base_Algorithem::scan2(mpz_t start, mpz_t end, int id) {
 	mpz_clear(new_end);
 }
 
-void Base_Algorithem::scan3() {
+void Base_Algorithem::scan3(int level) {
 	int i, id, start, end;
 	Base_Range* br;
 	Base_Algorithem ba;
-
+	
+	if(highest_level < level) {
+		highest_level = level;
+		
+		cout << "level = " << level << endl;
+	}
+	
 	// Init
 	id = this->getSmallestStart();
 	br = this->bases[id];
@@ -301,10 +309,10 @@ void Base_Algorithem::scan3() {
 	
 		if(ba.hasCollision()) {
 			if(ba.hasAnswerInStart() || ba.hasAnswerInEnd()) {
-				//ba.draw();
-				ba.drawSize();
+				ba.draw();
+				//ba.drawSize();
 			} else {
-				ba.scan3();
+				ba.scan3(level + 1);
 			}
 		}
 	}

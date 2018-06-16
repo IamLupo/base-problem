@@ -32,7 +32,7 @@ class Base_Algorithem {
 		void scanA();
 		void scanB();
 		void scan2(mpz_t start, mpz_t end, int id);
-		void scan3();
+		void scan3(int level);
 		
 		// Draw
 		void draw();
