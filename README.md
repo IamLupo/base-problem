@@ -12,10 +12,11 @@ and find valid solutions.
 
 Results:
 
-I manage to scan numbers with 32 milion digits.
+	I manage to scan numbers with 32 milion digits for base 3, 4, 5 and 6.
 
 
 Requirement:
+
 	GMP: https://gmplib.org/
 
 
@@ -35,13 +36,16 @@ Run: (Starts at 32 mil digits numbers range)
 
 
 Future:
-This project could potentially been runned on different machiens.
-It only needs a manager that every machine scan there own ranges.
+
+	This project could potentially been runned on different machiens.
+	It only needs a manager that every machine scan there own ranges.
 
 
 Original i been inspired by Numberphile:
-https://www.youtube.com/watch?v=LNS1fabDkeA
+
+	https://www.youtube.com/watch?v=LNS1fabDkeA
 
 
 The person that started is "Richard Green":
-https://plus.google.com/101584889282878921052/posts/Fni6x2TTeaS
+
+	https://plus.google.com/101584889282878921052/posts/Fni6x2TTeaS
