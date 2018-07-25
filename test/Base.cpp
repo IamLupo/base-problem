@@ -60,7 +60,7 @@ int Base::collisions() {
 void Base::draw() {
 	int i;
 	
-	cout << this->value << "[" << this->base << "] = {";
+	cout << this->value << "[base " << this->base << "] = {";
 	
 	for(i = this->digits.size() - 1; i >= 0; i--) {
 		cout << " " << this->digits[i];
