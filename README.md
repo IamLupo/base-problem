@@ -26,14 +26,13 @@ Compile:
 	./compile
 
 
-Run:
+Run: (By default is starts scanning at 32 mil digits numbers range)
 
 	./main
 
-Run: (Starts at 32 mil digits numbers range)
-
-	./main 32000000
-
+Run: (Custom range)
+	
+	./main <nr>
 
 Future:
 
