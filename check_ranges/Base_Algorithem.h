@@ -15,7 +15,7 @@ class Base_Algorithem {
 	public:
 		vector<Base_Range*> bases;
 		
-		Base_Algorithem();
+		Base_Algorithem(int start, int total);
 		~Base_Algorithem();
 		
 		bool hasCollision();

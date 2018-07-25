@@ -2,12 +2,12 @@
 
 static int highest_level = 0;
 
-Base_Algorithem::Base_Algorithem() {
+Base_Algorithem::Base_Algorithem(int start, int total) {
 	int i;
 	Base_Range* br;
 	
 	//Init
-	this->total = 3;
+	this->total = total;
 	mpz_init(this->t);
 	
 	for(i = 0; i < this->total; i++) {
@@ -15,7 +15,7 @@ Base_Algorithem::Base_Algorithem() {
 		br = new Base_Range();
 		
 		// Set base
-		br->setBase(i + 4);
+		br->setBase(start + i);
 		
 		// Next
 		br->next();
@@ -275,7 +275,7 @@ void Base_Algorithem::scan2(mpz_t start, mpz_t end, int id) {
 void Base_Algorithem::scan3(int level) {
 	int i, id, start, end;
 	Base_Range* br;
-	Base_Algorithem ba;
+	Base_Algorithem ba(this->bases[0]->base, this->total);
 	
 	if(highest_level < level) {
 		highest_level = level;
