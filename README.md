@@ -26,13 +26,17 @@ Compile:
 	./compile
 
 
-Run: (By default is starts scanning at 32 mil digits numbers range)
+Run:
 
-	./main
+	./main <start range> <first base> <last base>
 
-Run: (Custom range)
+Default: (starts at position 0 and scan with base 3, 4 and 5)
+
+	./main 0 3 5
 	
-	./main <nr>
+Example: (starts at numbers with 32 mil digits and scan with base 4, 5, 6)
+
+	./main 32000000 4 6
 
 Future:
 
