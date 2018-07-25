@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 			
 			ba.setN(stoi(nr.c_str(), nullptr, 0));
 		} else {
-			ba.setN(27436667);
+			ba.setN(32000000);
 		}
 		
 		ba.scanA();
