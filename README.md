@@ -28,15 +28,15 @@ Compile:
 
 Run:
 
-	./main <start range> <first base> <last base>
+	./main -n <start range> -base <base numbers>
 
 Default: (starts at position 0 and scan with base 3, 4 and 5)
 
-	./main 0 3 5
+	./main -n 0 -base 3 4 5
 	
 Example: (starts at numbers with 32 mil digits and scan with base 4, 5, 6)
 
-	./main 32000000 4 6
+	./main -n 32000000 -base 4 5 6
 
 Future:
 
