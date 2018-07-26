@@ -52,3 +52,9 @@ Original i been inspired by Numberphile:
 The person that started is "Richard Green":
 
 	https://plus.google.com/101584889282878921052/posts/Fni6x2TTeaS
+	
+
+You can contact me on Twitch:
+		
+		https://www.twitch.tv/lupo1989
+		
