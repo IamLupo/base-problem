@@ -15,11 +15,13 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	int i, n;
 	vector<int> base_nrs;
+	bool get_base_nr;
 	
 	try {
 		// Default
 		n = 0;
 		base_nrs = {3, 4, 5};
+		get_base_nr = false;
 		
 		i = 0;
 		while(i < argc) {
@@ -30,18 +32,13 @@ int main(int argc, char* argv[]) {
 				
 				i++;
 			}
-			
-			if(argument == "-base") {
+			else if(argument == "-base") {
 				base_nrs = {};
 				
-				i++;
-				while(i < argc) {
-					cout << stoi(argv[i], nullptr, 0) << endl;
-					
-					base_nrs.push_back(stoi(argv[i], nullptr, 0));
-					
-					i++;
-				}
+				get_base_nr = true;
+			}
+			else if(get_base_nr) {
+				base_nrs.push_back(stoi(argv[i], nullptr, 0));
 			}
 			
 			i++;
