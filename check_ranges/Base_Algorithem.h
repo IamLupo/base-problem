@@ -9,13 +9,14 @@ using namespace std;
 
 class Base_Algorithem {
 	private:
+		vector<int> base_nrs;
 		int total;		// total bases
 		mpz_t t;		// Temp
-	
+		
 	public:
 		vector<Base_Range*> bases;
 		
-		Base_Algorithem(int start, int total);
+		Base_Algorithem(const vector<int> base_nrs);
 		~Base_Algorithem();
 		
 		bool hasCollision();
@@ -36,6 +37,7 @@ class Base_Algorithem {
 		
 		// Draw
 		void draw();
+		void drawAnswers();
 		void drawSize();
 		void drawBase();
 		void drawTime(time_t t);

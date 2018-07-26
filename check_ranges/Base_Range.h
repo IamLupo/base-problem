@@ -28,6 +28,7 @@ class Base_Range {
 		void updateXY(long long n);
 		bool isDone();
 		bool isInRange(mpz_t pos);
+		bool reachedLowestDepth();
 		void next();
 		
 		//Draw

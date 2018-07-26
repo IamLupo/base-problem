@@ -13,24 +13,42 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	int n, first_base, last_base;
+	int i, n;
+	vector<int> base_nrs;
 	
 	try {
-		// Default values
+		// Default
 		n = 0;
-		first_base = 3;
-		last_base = 5;
+		base_nrs = {3, 4, 5};
 		
-		if(argc >= 2) {
-			n = stoi(argv[1], nullptr, 0);
+		i = 0;
+		while(i < argc) {
+			string argument = argv[i];
+			
+			if(argument == "-n") {
+				n = stoi(argv[i + 1], nullptr, 0);
+				
+				i++;
+			}
+			
+			if(argument == "-base") {
+				base_nrs = {};
+				
+				i++;
+				while(i < argc) {
+					cout << stoi(argv[i], nullptr, 0) << endl;
+					
+					base_nrs.push_back(stoi(argv[i], nullptr, 0));
+					
+					i++;
+				}
+			}
+			
+			i++;
 		}
 		
-		if(argc >= 4) {
-			first_base = stoi(argv[2], nullptr, 0);
-			last_base = stoi(argv[3], nullptr, 0);
-		}
-		
-		Base_Algorithem ba(first_base, last_base - first_base + 1);
+		// Run Algorithm
+		Base_Algorithem ba(base_nrs);
 		ba.setN(n);
 		ba.scanA();
 	}

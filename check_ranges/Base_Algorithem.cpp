@@ -2,20 +2,21 @@
 
 static int highest_level = 0;
 
-Base_Algorithem::Base_Algorithem(int start, int total) {
+Base_Algorithem::Base_Algorithem(const vector<int> base_nrs) {
 	int i;
 	Base_Range* br;
 	
 	//Init
-	this->total = total;
+	this->base_nrs = base_nrs;
+	this->total = base_nrs.size();
 	mpz_init(this->t);
 	
-	for(i = 0; i < this->total; i++) {
+	for(i = 0; i < base_nrs.size(); i++) {
 		// Create base
 		br = new Base_Range();
 		
 		// Set base
-		br->setBase(start + i);
+		br->setBase(base_nrs[i]);
 		
 		// Next
 		br->next();
@@ -275,12 +276,12 @@ void Base_Algorithem::scan2(mpz_t start, mpz_t end, int id) {
 void Base_Algorithem::scan3(int level) {
 	int i, id, start, end;
 	Base_Range* br;
-	Base_Algorithem ba(this->bases[0]->base, this->total);
+	Base_Algorithem ba(this->base_nrs);
 	
 	if(highest_level < level) {
 		highest_level = level;
 		
-		cout << "level = " << level << endl;
+		//cout << "level = " << level << endl;
 	}
 	
 	// Init
@@ -309,8 +310,14 @@ void Base_Algorithem::scan3(int level) {
 	
 		if(ba.hasCollision()) {
 			if(ba.hasAnswerInStart() || ba.hasAnswerInEnd()) {
-				ba.draw();
+				//ba.draw();
+				ba.drawAnswers();
 				//ba.drawSize();
+				
+				// In experience scanning for higher depth keeps popping up same answers
+				// Makes it useless to run
+				//if(!this->bases[0]->reachedLowestDepth() && !this->bases[1]->reachedLowestDepth())
+				//	ba.scan3(level + 1);
 			} else {
 				ba.scan3(level + 1);
 			}
@@ -325,6 +332,14 @@ void Base_Algorithem::draw() {
 		this->bases[i]->draw();
 	
 	cout << "---------------------------------------" << endl;
+}
+
+void Base_Algorithem::drawAnswers() {
+	if(this->hasAnswerInStart())
+		cout << mpz_get_str(nullptr, 10, this->t) << endl;
+	
+	if(this->hasAnswerInEnd())
+		cout << mpz_get_str(nullptr, 10, this->t) << endl;
 }
 
 void Base_Algorithem::drawSize() {

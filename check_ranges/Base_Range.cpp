@@ -100,6 +100,10 @@ bool Base_Range::isInRange(mpz_t pos) {
 	return false;
 }
 
+bool Base_Range::reachedLowestDepth() {
+	return (mpz_cmp_ui(this->x, 0) == 0);
+}
+
 void Base_Range::next() {
 	// Fix
 	if(mpz_cmp_ui(this->x, 0) == 0)
