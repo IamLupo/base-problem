@@ -21,7 +21,6 @@ int main(int argc, char* argv[]) {
 		// Default
 		n = 0;
 		base_nrs = {3, 4, 5};
-		get_base_nr = false;
 		
 		i = 0;
 		while(i < argc) {
