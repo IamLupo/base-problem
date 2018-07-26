@@ -1,0 +1,63 @@
+Collisions base 3 and 10.txt
+10
+Collisions base 3 and 9.txt
+10
+-------------------------------
+Collisions base 3 and 11.txt
+12
+Collisions base 3 and 12.txt
+12
+-------------------------------
+Collisions base 3 and 11.txt
+12
+Collisions base 3 and 12.txt
+12
+-------------------------------
+Collisions base 3 and 12.txt
+20736
+Collisions base 3 and 4.txt
+20736
+Collisions base 4 and 12.txt
+20736
+-------------------------------
+Collisions base 3 and 18.txt
+324
+Collisions base 3 and 4.txt
+324
+-------------------------------
+Collisions base 3 and 4.txt
+81
+Collisions base 3 and 9.txt
+81
+Collisions base 4 and 9.txt
+81
+-------------------------------
+Collisions base 3 and 4.txt
+256
+Collisions base 4 and 16.txt
+256
+-------------------------------
+Collisions base 3 and 18.txt
+324
+Collisions base 3 and 4.txt
+324
+-------------------------------
+Collisions base 3 and 12.txt
+20736
+Collisions base 3 and 4.txt
+20736
+Collisions base 4 and 12.txt
+20736
+-------------------------------
+Collisions base 3 and 4.txt
+65620
+Collisions base 4 and 9.txt
+65620
+-------------------------------
+Collisions base 3 and 4.txt
+82000
+Collisions base 3 and 5.txt
+82000
+Collisions base 4 and 5.txt
+82000
+-------------------------------
