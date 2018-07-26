@@ -15,7 +15,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	int i, n;
 	vector<int> base_nrs;
-	bool get_base_nr;
+	string get_argument;
 	
 	try {
 		// Default
@@ -28,16 +28,16 @@ int main(int argc, char* argv[]) {
 			string argument = argv[i];
 			
 			if(argument == "-n") {
-				n = stoi(argv[i + 1], nullptr, 0);
-				
-				i++;
+				get_argument = "-n";
+			}
+			else if(get_argument == "-n") {
+				n = stoi(argv[i], nullptr, 0);
 			}
 			else if(argument == "-base") {
 				base_nrs = {};
-				
-				get_base_nr = true;
+				get_argument = "-base";
 			}
-			else if(get_base_nr) {
+			else if(get_argument == "-base") {
 				base_nrs.push_back(stoi(argv[i], nullptr, 0));
 			}
 			
