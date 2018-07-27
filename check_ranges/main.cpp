@@ -35,19 +35,19 @@ int main(int argc, char* argv[]) {
 				n = stoi(argv[i], nullptr, 0);
 				get_argument = "";
 			}
-			else if(argument == "-base") {
-				base_nrs = {};
-				get_argument = "-base";
-			}
-			else if(get_argument == "-base") {
-				base_nrs.push_back(stoi(argv[i], nullptr, 0));
-			}
 			else if(argument == "-max") {
 				get_argument = "-max";
 			}
 			else if(get_argument == "-max") {
 				max = stoi(argv[i], nullptr, 0);
 				get_argument = "";
+			}
+			else if(argument == "-base") {
+				base_nrs = {};
+				get_argument = "-base";
+			}
+			else if(get_argument == "-base") {
+				base_nrs.push_back(stoi(argv[i], nullptr, 0));
 			}
 			
 			i++;
