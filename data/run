@@ -1,0 +1,22 @@
+#! /bin/bash
+
+###
+### 
+###
+
+program="../check_ranges/main"
+nr=$1
+
+## Create directory
+mkdir -p "base $nr"
+
+for i in {3..1000};
+do
+	output_file="base $nr/base $i.txt"
+	
+	## Execute
+	$(../check_ranges/main -base $nr $i -max 40 > "$output_file")
+
+	## Remove data if no results found
+	[ -s "$output_file" ] || rm "$output_file"
+done
