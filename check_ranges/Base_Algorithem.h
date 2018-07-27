@@ -12,11 +12,12 @@ class Base_Algorithem {
 		vector<int> base_nrs;
 		int total;		// total bases
 		mpz_t t;		// Temp
+		int max;
 		
 	public:
 		vector<Base_Range*> bases;
 		
-		Base_Algorithem(const vector<int> base_nrs);
+		Base_Algorithem(const vector<int> base_nrs, int max);
 		~Base_Algorithem();
 		
 		bool hasCollision();

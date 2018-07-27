@@ -2,13 +2,15 @@
 
 static int highest_level = 0;
 
-Base_Algorithem::Base_Algorithem(const vector<int> base_nrs) {
+Base_Algorithem::Base_Algorithem(const vector<int> base_nrs, int max = -1) {
 	int i;
 	Base_Range* br;
 	
 	//Init
 	this->base_nrs = base_nrs;
 	this->total = base_nrs.size();
+	this->max = max;
+	
 	mpz_init(this->t);
 	
 	for(i = 0; i < base_nrs.size(); i++) {
@@ -193,6 +195,10 @@ void Base_Algorithem::scanA() {
 			cout << " - " << s << endl;
 			l = s + 10000;
 		}
+		
+		// Limit digits
+		if(this->max != -1 && s >= this->max)
+			return;
 
 		this->scan3(0);
 	}
